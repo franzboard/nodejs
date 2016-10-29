@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+ <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+ <script src="socket.io/socket.io.js"></script>
+ <script src="client.js"></script>
+ <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <h1>Raspberry Pi Controls</h1>  
+    <table>
+        <tr><th colspan="3">Button</th></tr>
+        <tr>
+            <td>GPIO 22</td><td>GPIO 27</td><td>GPIO 17</td>
+        </tr>
+        <tr>
+        </tr>   
+        <tr>
+            <td class="led" id="button22">&#x25CF;</td>
+            <td class="led" id="button27">&#x25CF;</td>
+            <td class="led" id="button17">&#x25CF;</td>
+        </tr>   
+        </table><br>
+        <table>
+            <tr><th colspan="4">LED</th></tr>    
+        <tr>
+            <td>GPIO 18</td>
+            <td>GPIO 23</td>
+            <td>GPIO 24</td>
+            <td>GPIO 25</td>
+            
+        </tr>
+        <tr>
+            <td>
+                <form id="led18">
+                    <input type="radio" name="led18" value="1">1<br>
+                    <input type="radio" name="led18" value="0">0<br>
+                </form>
+            </td>
+            <td>
+                <form id="led23">
+                    <input type="radio" name="led23" value="1">1<br>
+                    <input type="radio" name="led23" value="0">0<br>
+                </form>
+            </td>
+            <td>
+                <form id="led24">
+                    <input type="radio" name="led24" value="1">1<br>
+                    <input type="radio" name="led24" value="0">0<br>
+                </form>
+            </td>
+            <td>
+                <form id="led25">
+                    <input type="radio" name="led25" value="1">1<br>
+                    <input type="radio" name="led25" value="0">0<br>
+                </form>
+            </td>           
+    </table>
+</div>
+</body>
+</html>
