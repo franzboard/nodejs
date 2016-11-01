@@ -15,7 +15,7 @@ var express = require('express')
 server.listen(conf.port);
 app.use(express.static(__dirname + '/public'));
 app.get('/', function (req, res) {
-	res.sendFile(__dirname + '/public/index.html');
+        res.sendFile(__dirname + '/public/index.html');
 });
 
 console.log('Server listening on port ' + conf.port);
@@ -39,11 +39,11 @@ io.sockets.on('connection', function (socket) {
         eventEmitter.emit('ledOnOff', data);
         io.sockets.emit('appdata', data);
     });
-	socket.on('disconnect', function() {
-		eventEmitter.removeListener('buttonPressed', sendData);
-		console.log( 'socket disconnect from ID: ' + socket.id );
-	});
-	
+        socket.on('disconnect', function() {
+                eventEmitter.removeListener('buttonPressed', sendData);
+                console.log( 'socket disconnect from ID: ' + socket.id );
+        });
+        
 });
 
 ////////////////// Setup buttons + event listener //////////////////
@@ -54,18 +54,18 @@ var button27 = new Gpio(27, 'in', 'both');
 var button17 = new Gpio(17, 'in', 'both');
 
 button22.watch(function (err, value) {
-	if (err) { throw err; }
-	eventEmitter.emit('buttonPressed', {'id':'button22', 'value':value});
+        if (err) { throw err; }
+        eventEmitter.emit('buttonPressed', {'id':'button22', 'value':value});
 });
 
 button27.watch(function (err, value) {
-	if (err) { throw err; }
-	eventEmitter.emit('buttonPressed', {'id':'button27', 'value':value});
+        if (err) { throw err; }
+        eventEmitter.emit('buttonPressed', {'id':'button27', 'value':value});
 });
 
 button17.watch(function (err, value) {
-	if (err) { throw err; }
-	eventEmitter.emit('buttonPressed', {'id':'button17', 'value':value});
+        if (err) { throw err; }
+        eventEmitter.emit('buttonPressed', {'id':'button17', 'value':value});
 });
 
 function initialButtonValues()
@@ -91,7 +91,7 @@ function initialButtonValues()
 var gpioLeds = ['18', '23', '24', '25'];
 var led = [];
 for (i = 0; i < gpioLeds.length; i++) {
-	led[i] = new Gpio(gpioLeds[i], 'out');
+        led[i] = new Gpio(gpioLeds[i], 'out');
 }
 
 eventEmitter.on('ledOnOff', function(data) {
@@ -107,8 +107,8 @@ function initialLedValues()
 {
     var value;
     for (i = 0; i < gpioLeds.length; i++) {
-	value = led[i].readSync();
-	io.sockets.emit('appdata', {'id': 'led' + gpioLeds[i], 'value':value});
+        value = led[i].readSync();
+        io.sockets.emit('appdata', {'id': 'led' + gpioLeds[i], 'value':value});
     }
 }
 
