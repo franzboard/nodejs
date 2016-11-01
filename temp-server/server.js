@@ -21,8 +21,8 @@ app.use(express.static(__dirname + '/public'));
 
 // wenn der Pfad / aufgerufen wird
 app.get('/', function (req, res) {
-	// so wird die Datei index.html ausgegeben
-	res.sendFile(__dirname + '/public/index.html');
+    // so wird die Datei index.html ausgegeben
+    res.sendFile(__dirname + '/public/index.html');
 });
  
  
