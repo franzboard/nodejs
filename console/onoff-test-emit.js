@@ -8,6 +8,7 @@ var led = [];
 var button = [];
 var count = 0;
 var i;
+var x = 0;
 
 var Gpio = require('onoff').Gpio;
 for (i = 0; i < pins.length; i++) {
@@ -15,7 +16,7 @@ for (i = 0; i < pins.length; i++) {
 }
 
 for (i = 0; i < buttons.length; i++) {
-    button[i] = new Gpio(buttons[i], 'in', 'falling', {debounceTimeout:200});
+    button[i] = new Gpio(buttons[i], 'in', 'falling', {debounceTimeout:400});
 
 }
 
@@ -35,22 +36,25 @@ button[2].watch(function (err, value) {
 });
 
 eventEmitter.on('pressed', function(n) {
-    console.log('Button ' + n + ' pressed');
+    // console.log('Button ' + n + ' pressed');
     reset_leds();
     if (n == 0) {
-        led[count].writeSync(1);
+    	count++;
+    	if (count > 4) { count = 1 };
+        led[count-1].writeSync(1);
     }
-    else if (n == 1) {
-        led[3-count].writeSync(1);
+    else if (n == 2) {
+    	count--;
+    	if (count < 1) { count = 4 };
+        led[count-1].writeSync(1);
     }
     else {
-        led[0].writeSync(1-count%2); 
-        led[1].writeSync(1-count%2); 
-        led[2].writeSync(1-count%2); 
-        led[3].writeSync(1-count%2); 
+	x = (x == 0) ? 1 : 0;
+        led[0].writeSync(x); 
+        led[1].writeSync(x); 
+        led[2].writeSync(x); 
+        led[3].writeSync(x); 
     }
-    count++;
-    if (count > 3) { count = 0 };
 });
 
 
