@@ -1,0 +1,23 @@
+# systemd startup script for node example leds-buttons
+#
+# install: cp nodejs.service /etc/systemd/system/
+# start with systemctl start nodejs.service
+# start on every boot: systemctl enable nodejs.service
+# Edgar Neukirchner 2016
+#
+[Unit]
+Description=Node.js Server
+[Service]
+ExecStart= /home/nodeuser/.nvm/versions/node/v7.0.0/bin/node /home/nodeuser/nodejs/leds-buttons/server.js
+Restart=always
+RestartSec=10                     
+StandardOutput=syslog            
+StandardError=syslog            
+SyslogIdentifier=nodejs-leds-buttons
+User=nodeuser
+Group=nodeuser
+Environment=NODE_ENV=production PORT=8000
+
+[Install]
+WantedBy=multi-user.target
+
